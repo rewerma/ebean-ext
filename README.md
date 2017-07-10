@@ -1,5 +1,5 @@
 # ebean-ext
-Extend for ebean orm
+Extend for Ebean ORM
 
 1.查询扩展
 
