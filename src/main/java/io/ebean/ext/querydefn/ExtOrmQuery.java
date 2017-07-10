@@ -7,6 +7,7 @@ import io.ebean.bean.ObjectGraphNode;
 import io.ebean.bean.PersistenceContext;
 import io.ebean.event.BeanQueryRequest;
 import io.ebean.event.readaudit.ReadEvent;
+import io.ebean.ext.ExtOrderBy;
 import io.ebean.ext.expression.ExtExpressionList;
 import io.ebean.plugin.BeanType;
 import io.ebean.typequery.TQAssocBean;
@@ -1086,6 +1087,14 @@ public class ExtOrmQuery<T> implements SpiQuery<T> {
 
     //------------------------- extend -------------------------
 
+    public ExtOrderBy<T> extOrder() {
+        return extOrderBy();
+    }
+
+    public ExtOrderBy<T> extOrderBy() {
+        return new ExtOrderBy<T>(defaultOrmQuery.orderBy());
+    }
+
     public ExtOrmQuery<T> select(TQProperty... fetchProperties) {
         StringBuilder sb = new StringBuilder();
         int i = 0;
@@ -1104,7 +1113,7 @@ public class ExtOrmQuery<T> implements SpiQuery<T> {
     }
 
     public ExtOrmQuery<T> fetch(TQAssocBean path, FetchConfig fetchConfig) {
-        return this.fetch(getBeanName(path),fetchConfig);
+        return this.fetch(getBeanName(path), fetchConfig);
     }
 
     public ExtOrmQuery<T> fetch(TQAssocBean path, TQProperty... fetchProperties) {

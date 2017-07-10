@@ -30,7 +30,13 @@ Extend for Ebean ORM
     QUser _user = QUser.alias();
     QRole _role = QRole.alias();
     User.find.query().fetch(_user.role, _role.id, _role.roleName).where().eq(_user.role.roleName, "admin").findList();
+
+(6).使用别名参数的orderBy
+
+    User.find.query().extOrder().desc(_user.id).findList();
+    User.find.query().where().eq(_user.id, 1L).extOrder().desc(_user.userName).findList();
     
+
 2.Model操作扩展
 
 (1).实体类继承抽象类：io.ebean.ext.Model

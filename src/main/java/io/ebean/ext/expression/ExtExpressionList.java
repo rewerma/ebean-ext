@@ -810,7 +810,7 @@ public class ExtExpressionList<T> implements SpiExpressionList<T> {
     }
 
     public ExtOrderBy<T> extOrderBy() {
-        return new ExtOrderBy<T>(this.query);
+        return new ExtOrderBy<T>(defaultExpressionList.orderBy());
     }
 
     public ExtExpressionList<T> ignEq(String s, Object o) {

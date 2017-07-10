@@ -3,39 +3,37 @@ package io.ebean.ext;
 
 import io.ebean.OrderBy;
 import io.ebean.ext.querydefn.ExtOrmQuery;
+import io.ebean.typequery.TQProperty;
 
 import java.io.Serializable;
 
-public class ExtOrderBy<T> implements Serializable {
+public final class ExtOrderBy<T> implements Serializable {
 
     private static final long serialVersionUID = 4237564406351609761L;
 
-    private ExtOrmQuery<T> query;
-
     private OrderBy<T> orderBy;
-
-    public ExtOrderBy(ExtOrmQuery<T> query) {
-        this.query = query;
-    }
 
     public ExtOrderBy(OrderBy<T> orderBy) {
         this.orderBy = orderBy;
     }
 
     public ExtOrmQuery<T> asc(String propertyName) {
-        if (query != null) {
-            this.query.getOrderBy().asc(propertyName);
-            return query;
-        } else {
-            return new ExtOrmQuery<T>(orderBy.asc(propertyName));
-        }
+        return new ExtOrmQuery<T>(orderBy.asc(propertyName));
     }
 
     public ExtOrmQuery<T> desc(String propertyName) {
-        if (query != null) {
-        this.query.getOrderBy().desc(propertyName);
-        return query;} else {
-            return new ExtOrmQuery<T>(orderBy.desc(propertyName));
-        }
+        return new ExtOrmQuery<T>(orderBy.desc(propertyName));
+    }
+
+    public ExtOrmQuery<T> asc(TQProperty propertyName) {
+        return this.asc(propertyName.toString());
+    }
+
+    public ExtOrmQuery<T> desc(TQProperty propertyName) {
+        return this.desc(propertyName.toString());
+    }
+
+    public ExtOrderBy<T> copy() {
+        return new ExtOrderBy<T>(orderBy.copy());
     }
 }
