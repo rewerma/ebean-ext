@@ -149,12 +149,10 @@ public class ExtJunctionExpression<T> implements SpiJunction<T>, SpiExpression, 
     }
 
     @Nullable
-    @Override
     public T findOne() {
         return junctionExpression.findOne();
     }
 
-    @Override
     public Optional<T> findOneOrEmpty() {
         return junctionExpression.findOneOrEmpty();
     }

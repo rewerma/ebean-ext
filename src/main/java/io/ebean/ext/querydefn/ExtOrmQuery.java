@@ -384,13 +384,11 @@ public class ExtOrmQuery<T> implements SpiQuery<T> {
         return defaultOrmQuery.findSingleAttributeList();
     }
 
-    @Override
     @Nullable
     public T findOne() {
         return defaultOrmQuery.findOne();
     }
 
-    @Override
     public Optional<T> findOneOrEmpty() {
         return defaultOrmQuery.findOneOrEmpty();
     }
