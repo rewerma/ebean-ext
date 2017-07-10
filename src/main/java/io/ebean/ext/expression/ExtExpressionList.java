@@ -5,6 +5,7 @@ import io.ebean.event.BeanQueryRequest;
 import io.ebean.ext.ExtOrderBy;
 import io.ebean.ext.querydefn.ExtOrmQuery;
 import io.ebean.search.*;
+import io.ebean.typequery.*;
 import io.ebeaninternal.api.*;
 import io.ebeaninternal.server.deploy.BeanDescriptor;
 import io.ebeaninternal.server.expression.DefaultExpressionList;
@@ -915,5 +916,392 @@ public class ExtExpressionList<T> implements SpiExpressionList<T> {
             defaultExpressionList.icontains(s, s1);
         }
         return this;
+    }
+
+    //QueryBean property
+    public <X> ExtExpressionList<T> eq(PBaseNumber<?, X> propertyName, X value) {
+        return this.eq(propertyName.toString(), value);
+    }
+
+    public ExtExpressionList<T> eq(PString propertyName, String value) {
+        return this.eq(propertyName.toString(), value);
+    }
+
+    public <X> ExtExpressionList<T> eq(PBaseValueEqual<?, X> propertyName, X value) {
+        return this.eq(propertyName.toString(), value);
+    }
+
+    public ExtExpressionList<T> eq(PBoolean propertyName, Boolean value) {
+        return this.eq(propertyName.toString(), value);
+    }
+
+    public <D> ExtExpressionList<T> eq(PBaseDate<?, D> propertyName, D value) {
+        return this.eq(propertyName.toString(), value);
+    }
+
+    public <X> ExtExpressionList<T> ne(PBaseNumber<?, X> propertyName, X value) {
+        return this.ne(propertyName.toString(), value);
+    }
+
+    public ExtExpressionList<T> ne(PString propertyName, String value) {
+        return this.ne(propertyName.toString(), value);
+    }
+
+    public <X> ExtExpressionList<T> ne(PBaseValueEqual<?, X> propertyName, X value) {
+        return this.ne(propertyName.toString(), value);
+    }
+
+    public ExtExpressionList<T> ne(PBoolean propertyName, Boolean value) {
+        return this.ne(propertyName.toString(), value);
+    }
+
+    public <D> ExtExpressionList<T> ne(PBaseDate<?, D> propertyName, D value) {
+        return this.ne(propertyName.toString(), value);
+    }
+
+    public ExtExpressionList<T> ieq(PString propertyName, String value) {
+        return this.ieq(propertyName.toString(), value);
+    }
+
+    public <X> ExtExpressionList<T> between(PBaseNumber<?, X> propertyName, X value1, X value2) {
+        return this.between(propertyName.toString(), value1, value2);
+    }
+
+    public ExtExpressionList<T> between(PString propertyName, String value1, String value2) {
+        return this.between(propertyName.toString(), value1, value2);
+    }
+
+    public <X> ExtExpressionList<T> between(PBaseValueEqual<?, X> propertyName, X value1, X value2) {
+        return this.between(propertyName.toString(), value1, value2);
+    }
+
+    public <D> ExtExpressionList<T> between(PBaseDate<?, D> propertyName, D value1, D value2) {
+        return this.between(propertyName.toString(), value1, value2);
+    }
+
+    public <X> ExtExpressionList<T> betweenProperties(PBaseNumber<?, X> lowProperty, PBaseNumber<?, X> highProperty, X value) {
+        return this.betweenProperties(lowProperty.toString(), highProperty.toString(), value);
+    }
+
+    public <X> ExtExpressionList<T> betweenProperties(PBaseValueEqual<?, X> lowProperty, PBaseValueEqual<?, X> highProperty, X value) {
+        return this.betweenProperties(lowProperty.toString(), highProperty.toString(), value);
+    }
+
+    public <D> ExtExpressionList<T> betweenProperties(PBaseDate<?, D> lowProperty, PBaseDate<?, D> highProperty, D value) {
+        return this.betweenProperties(lowProperty.toString(), highProperty.toString(), value);
+    }
+
+    public ExtExpressionList<T> betweenProperties(PString lowProperty, PString highProperty, String value) {
+        return this.betweenProperties(lowProperty.toString(), highProperty.toString(), value);
+    }
+
+    public <X> ExtExpressionList<T> gt(PBaseNumber<?, X> propertyName, X value) {
+        return this.gt(propertyName.toString(), value);
+    }
+
+    public <X> ExtExpressionList<T> gt(PBaseValueEqual<?, X> propertyName, X value) {
+        return this.gt(propertyName.toString(), value);
+    }
+
+    public <D> ExtExpressionList<T> gt(PBaseDate<?, D> propertyName, D value) {
+        return this.gt(propertyName.toString(), value);
+    }
+
+    public ExtExpressionList<T> gt(PString propertyName, String value) {
+        return this.gt(propertyName.toString(), value);
+    }
+
+    public <X> ExtExpressionList<T> ge(PBaseNumber<?, X> propertyName, X value) {
+        return this.ge(propertyName.toString(), value);
+    }
+
+    public <X> ExtExpressionList<T> ge(PBaseValueEqual<?, X> propertyName, X value) {
+        return this.ge(propertyName.toString(), value);
+    }
+
+    public <D> ExtExpressionList<T> ge(PBaseDate<?, D> propertyName, D value) {
+        return this.ge(propertyName.toString(), value);
+    }
+
+    public ExtExpressionList<T> ge(PString propertyName, String value) {
+        return this.ge(propertyName.toString(), value);
+    }
+
+    public <X> ExtExpressionList<T> lt(PBaseNumber<?, X> propertyName, X value) {
+        return this.lt(propertyName.toString(), value);
+    }
+
+    public <X> ExtExpressionList<T> lt(PBaseValueEqual<?, X> propertyName, X value) {
+        return this.lt(propertyName.toString(), value);
+    }
+
+    public <D> ExtExpressionList<T> lt(PBaseDate<?, D> propertyName, D value) {
+        return this.lt(propertyName.toString(), value);
+    }
+
+    public ExtExpressionList<T> lt(PString propertyName, String value) {
+        return this.lt(propertyName.toString(), value);
+    }
+
+    public <X> ExtExpressionList<T> le(PBaseNumber<?, X> propertyName, X value) {
+        return this.le(propertyName.toString(), value);
+    }
+
+    public <X> ExtExpressionList<T> le(PBaseValueEqual<?, X> propertyName, X value) {
+        return this.le(propertyName.toString(), value);
+    }
+
+    public <D> ExtExpressionList<T> le(PBaseDate<?, D> propertyName, D value) {
+        return this.le(propertyName.toString(), value);
+    }
+
+    public ExtExpressionList<T> le(PString propertyName, String value) {
+        return this.le(propertyName.toString(), value);
+    }
+
+    public ExtExpressionList<T> isNull(TQProperty propertyName) {
+        return this.isNull(propertyName.toString());
+    }
+
+    public ExtExpressionList<T> isNotNull(TQProperty propertyName) {
+        return this.isNotNull(propertyName.toString());
+    }
+
+
+    public ExtExpressionList<T> like(PString propertyName, String value) {
+        return this.like(propertyName.toString(), value);
+    }
+
+    public ExtExpressionList<T> ilike(PString propertyName, String value) {
+        return this.ilike(propertyName.toString(), value);
+    }
+
+    public ExtExpressionList<T> startsWith(PString propertyName, String value) {
+        return this.startsWith(propertyName.toString(), value);
+    }
+
+    public ExtExpressionList<T> istartsWith(PString propertyName, String value) {
+        return this.istartsWith(propertyName.toString(), value);
+    }
+
+    public ExtExpressionList<T> endsWith(PString propertyName, String value) {
+        return this.endsWith(propertyName.toString(), value);
+    }
+
+    public ExtExpressionList<T> iendsWith(PString propertyName, String value) {
+        return this.iendsWith(propertyName.toString(), value);
+    }
+
+    public ExtExpressionList<T> contains(PString propertyName, String value) {
+        return this.contains(propertyName.toString(), value);
+    }
+
+    public ExtExpressionList<T> icontains(PString propertyName, String value) {
+        return this.icontains(propertyName.toString(), value);
+    }
+
+    public ExtExpressionList<T> in(TQProperty propertyName, Query<?> subQuery) {
+        return this.in(propertyName.toString(), subQuery);
+    }
+
+    public ExtExpressionList<T> in(TQProperty propertyName, Object... values) {
+        return this.in(propertyName.toString(), values);
+    }
+
+    public ExtExpressionList<T> in(TQProperty propertyName, Collection<?> values) {
+        return this.in(propertyName.toString(), values);
+    }
+
+    public ExtExpressionList<T> notIn(TQProperty propertyName, Object... values) {
+        return this.notIn(propertyName.toString(), values);
+    }
+
+    public ExtExpressionList<T> notIn(TQProperty propertyName, Collection<?> values) {
+        return this.notIn(propertyName.toString(), values);
+    }
+
+    public ExtExpressionList<T> notIn(TQProperty propertyName, Query<?> subQuery) {
+        return this.notIn(propertyName.toString(), subQuery);
+    }
+
+    public ExtExpressionList<T> isEmpty(TQProperty propertyName) {
+        return this.isEmpty(propertyName.toString());
+    }
+
+    public ExtExpressionList<T> isNotEmpty(TQProperty propertyName) {
+        return this.isEmpty(propertyName.toString());
+    }
+
+    public ExtExpressionList<T> arrayContains(TQProperty propertyName, Object... values) {
+        return this.arrayContains(propertyName.toString(), values);
+    }
+
+    public ExtExpressionList<T> arrayNotContains(TQProperty propertyName, Object... values) {
+        return this.arrayNotContains(propertyName.toString(), values);
+    }
+
+    public ExtExpressionList<T> arrayIsEmpty(TQProperty propertyName) {
+        return this.arrayIsEmpty(propertyName.toString());
+    }
+
+    public ExtExpressionList<T> arrayIsNotEmpty(TQProperty propertyName) {
+        return this.arrayIsNotEmpty(propertyName.toString());
+    }
+
+    public ExtExpressionList<T> match(PString propertyName, String search) {
+        return this.match(propertyName.toString(), search);
+    }
+
+    public ExtExpressionList<T> match(PString propertyName, String search, Match options) {
+        return this.match(propertyName.toString(), search, options);
+    }
+
+    public ExtExpressionList<T> multiMatch(String search, PString... properties) {
+        String[] propertiesStr = new String[properties.length];
+        int i = 0;
+        for (TQProperty property : properties) {
+            propertiesStr[i++] = property.toString();
+        }
+        return this.multiMatch(search, propertiesStr);
+    }
+
+    public <X> ExtExpressionList<T> ignEq(PBaseNumber<?, X> propertyName, X value) {
+        return this.ignEq(propertyName.toString(), value);
+    }
+
+    public ExtExpressionList<T> ignEq(PString propertyName, String value) {
+        return this.ignEq(propertyName.toString(), value);
+    }
+
+    public <X> ExtExpressionList<T> ignEq(PBaseValueEqual<?, X> propertyName, X value) {
+        return this.ignEq(propertyName.toString(), value);
+    }
+
+    public ExtExpressionList<T> ignEq(PBoolean propertyName, Boolean value) {
+        return this.ignEq(propertyName.toString(), value);
+    }
+
+    public <D> ExtExpressionList<T> ignEq(PBaseDate<?, D> propertyName, D value) {
+        return this.ignEq(propertyName.toString(), value);
+    }
+
+    public ExtExpressionList<T> ignIeq(PString propertyName, String value) {
+        return this.ignIeq(propertyName.toString(), value);
+    }
+
+    public <X> ExtExpressionList<T> ignNe(PBaseNumber<?, X> propertyName, X value) {
+        return this.ignNe(propertyName.toString(), value);
+    }
+
+    public ExtExpressionList<T> ignNe(PString propertyName, String value) {
+        return this.ignNe(propertyName.toString(), value);
+    }
+
+    public <X> ExtExpressionList<T> ignNe(PBaseValueEqual<?, X> propertyName, X value) {
+        return this.ignNe(propertyName.toString(), value);
+    }
+
+    public ExtExpressionList<T> ignNe(PBoolean propertyName, Boolean value) {
+        return this.ignNe(propertyName.toString(), value);
+    }
+
+    public <D> ExtExpressionList<T> ignNe(PBaseDate<?, D> propertyName, D value) {
+        return this.ignNe(propertyName.toString(), value);
+    }
+
+    public ExtExpressionList<T> ignContains(PString propertyName, String value) {
+        return this.ignContains(propertyName.toString(), value);
+    }
+
+    public ExtExpressionList<T> ignEndsWith(PString propertyName, String value) {
+        return this.ignEndsWith(propertyName.toString(), value);
+    }
+
+    public <X> ExtExpressionList<T> ignGe(PBaseNumber<?, X> propertyName, X value) {
+        return this.ignGe(propertyName.toString(), value);
+    }
+
+    public <X> ExtExpressionList<T> ignGe(PBaseValueEqual<?, X> propertyName, X value) {
+        return this.ignGe(propertyName.toString(), value);
+    }
+
+    public <D> ExtExpressionList<T> ignGe(PBaseDate<?, D> propertyName, D value) {
+        return this.ignGe(propertyName.toString(), value);
+    }
+
+    public ExtExpressionList<T> ignGe(PString propertyName, String value) {
+        return this.ignGe(propertyName.toString(), value);
+    }
+
+    public <X> ExtExpressionList<T> ignGt(PBaseNumber<?, X> propertyName, X value) {
+        return this.ignGt(propertyName.toString(), value);
+    }
+
+    public <X> ExtExpressionList<T> ignGt(PBaseValueEqual<?, X> propertyName, X value) {
+        return this.ignGt(propertyName.toString(), value);
+    }
+
+    public <D> ExtExpressionList<T> ignGt(PBaseDate<?, D> propertyName, D value) {
+        return this.ignGt(propertyName.toString(), value);
+    }
+
+    public ExtExpressionList<T> ignGt(PString propertyName, String value) {
+        return this.ignGt(propertyName.toString(), value);
+    }
+
+    public ExtExpressionList<T> ignIcontains(PString propertyName, String value) {
+        return this.ignIcontains(propertyName.toString(), value);
+    }
+
+    public ExtExpressionList<T> ignIendsWith(PString propertyName, String value) {
+        return this.ignIendsWith(propertyName.toString(), value);
+    }
+
+    public ExtExpressionList<T> ignIlike(PString propertyName, String value) {
+        return this.ignIlike(propertyName.toString(), value);
+    }
+
+    public ExtExpressionList<T> ignIstartsWith(PString propertyName, String value) {
+        return this.ignIstartsWith(propertyName.toString(), value);
+    }
+
+    public <X> ExtExpressionList<T> ignLe(PBaseNumber<?, X> propertyName, X value) {
+        return this.ignLe(propertyName.toString(), value);
+    }
+
+    public <X> ExtExpressionList<T> ignLe(PBaseValueEqual<?, X> propertyName, X value) {
+        return this.ignLe(propertyName.toString(), value);
+    }
+
+    public <D> ExtExpressionList<T> ignLe(PBaseDate<?, D> propertyName, D value) {
+        return this.ignLe(propertyName.toString(), value);
+    }
+
+    public ExtExpressionList<T> ignLe(PString propertyName, String value) {
+        return this.ignLe(propertyName.toString(), value);
+    }
+
+    public ExtExpressionList<T> ignLike(PString propertyName, String value) {
+        return this.ignLike(propertyName.toString(), value);
+    }
+
+    public <X> ExtExpressionList<T> ignLt(PBaseNumber<?, X> propertyName, X value) {
+        return this.ignLt(propertyName.toString(), value);
+    }
+
+    public <X> ExtExpressionList<T> ignLt(PBaseValueEqual<?, X> propertyName, X value) {
+        return this.ignLt(propertyName.toString(), value);
+    }
+
+    public <D> ExtExpressionList<T> ignLt(PBaseDate<?, D> propertyName, D value) {
+        return this.ignLt(propertyName.toString(), value);
+    }
+
+    public ExtExpressionList<T> ignLt(PString propertyName, String value) {
+        return this.ignLt(propertyName.toString(), value);
+    }
+
+    public ExtExpressionList<T> ignStartsWith(PString propertyName, String value) {
+        return this.ignStartsWith(propertyName.toString(), value);
     }
 }

@@ -9,6 +9,8 @@ import io.ebean.event.BeanQueryRequest;
 import io.ebean.event.readaudit.ReadEvent;
 import io.ebean.ext.expression.ExtExpressionList;
 import io.ebean.plugin.BeanType;
+import io.ebean.typequery.TQAssocBean;
+import io.ebean.typequery.TQProperty;
 import io.ebeaninternal.api.*;
 import io.ebeaninternal.server.autotune.ProfilingListener;
 import io.ebeaninternal.server.deploy.BeanDescriptor;
@@ -21,6 +23,7 @@ import io.ebeaninternal.server.querydefn.OrmQueryDetail;
 import io.ebeaninternal.server.querydefn.OrmUpdateProperties;
 import org.jetbrains.annotations.Nullable;
 
+import java.lang.reflect.Field;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
@@ -1069,5 +1072,64 @@ public class ExtOrmQuery<T> implements SpiQuery<T> {
     @Override
     public void simplifyExpressions() {
         defaultOrmQuery.simplifyExpressions();
+    }
+
+    private static String getBeanName(TQAssocBean path) {
+        try {
+            Field privateStringField = TQAssocBean.class.getDeclaredField("_name");
+            privateStringField.setAccessible(true);
+            return (String) privateStringField.get(path);
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    //------------------------- extend -------------------------
+
+    public ExtOrmQuery<T> select(TQProperty... fetchProperties) {
+        StringBuilder sb = new StringBuilder();
+        int i = 0;
+        for (TQProperty property : fetchProperties) {
+            if (i++ != 0) {
+                sb.append(",");
+            }
+            sb.append(property.toString());
+        }
+        defaultOrmQuery.select(sb.toString());
+        return this;
+    }
+
+    public ExtOrmQuery<T> fetch(TQAssocBean path) {
+        return this.fetch(getBeanName(path));
+    }
+
+    public ExtOrmQuery<T> fetch(TQAssocBean path, FetchConfig fetchConfig) {
+        return this.fetch(getBeanName(path),fetchConfig);
+    }
+
+    public ExtOrmQuery<T> fetch(TQAssocBean path, TQProperty... fetchProperties) {
+        StringBuilder sb = new StringBuilder();
+        int i = 0;
+        for (TQProperty property : fetchProperties) {
+            if (i++ != 0) {
+                sb.append(",");
+            }
+            sb.append(property.toString());
+        }
+        defaultOrmQuery.fetch(getBeanName(path), sb.toString());
+        return this;
+    }
+
+    public ExtOrmQuery<T> fetch(TQAssocBean assocProperty, FetchConfig fetchConfig, TQProperty... fetchProperties) {
+        StringBuilder sb = new StringBuilder();
+        int i = 0;
+        for (TQProperty property : fetchProperties) {
+            if (i++ != 0) {
+                sb.append(",");
+            }
+            sb.append(property.toString());
+        }
+        defaultOrmQuery.fetch(assocProperty.toString(), sb.toString(), fetchConfig);
+        return this;
     }
 }

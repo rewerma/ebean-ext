@@ -5,6 +5,7 @@ import io.ebean.event.BeanQueryRequest;
 import io.ebean.ext.expression.ExtExpressionList;
 import io.ebean.ext.ExtOrderBy;
 import io.ebean.search.*;
+import io.ebean.typequery.*;
 import io.ebeaninternal.api.*;
 import io.ebeaninternal.server.deploy.BeanDescriptor;
 import org.jetbrains.annotations.Nullable;
@@ -888,5 +889,392 @@ public class ExtJunctionExpression<T> implements SpiJunction<T>, SpiExpression, 
             junctionExpression.icontains(propertyName, value);
         }
         return this;
+    }
+
+    //QueryBean property
+    public <X> ExtJunctionExpression<T> eq(PBaseNumber<?, X> propertyName, X value) {
+        return this.eq(propertyName.toString(), value);
+    }
+
+    public ExtJunctionExpression<T> eq(PString propertyName, String value) {
+        return this.eq(propertyName.toString(), value);
+    }
+
+    public <X> ExtJunctionExpression<T> eq(PBaseValueEqual<?, X> propertyName, X value) {
+        return this.eq(propertyName.toString(), value);
+    }
+
+    public ExtJunctionExpression<T> eq(PBoolean propertyName, Boolean value) {
+        return this.eq(propertyName.toString(), value);
+    }
+
+    public <D> ExtJunctionExpression<T> eq(PBaseDate<?, D> propertyName, D value) {
+        return this.eq(propertyName.toString(), value);
+    }
+
+    public <X> ExtJunctionExpression<T> ne(PBaseNumber<?, X> propertyName, X value) {
+        return this.ne(propertyName.toString(), value);
+    }
+
+    public ExtJunctionExpression<T> ne(PString propertyName, String value) {
+        return this.ne(propertyName.toString(), value);
+    }
+
+    public <X> ExtJunctionExpression<T> ne(PBaseValueEqual<?, X> propertyName, X value) {
+        return this.ne(propertyName.toString(), value);
+    }
+
+    public ExtJunctionExpression<T> ne(PBoolean propertyName, Boolean value) {
+        return this.ne(propertyName.toString(), value);
+    }
+
+    public <D> ExtJunctionExpression<T> ne(PBaseDate<?, D> propertyName, D value) {
+        return this.ne(propertyName.toString(), value);
+    }
+
+    public ExtJunctionExpression<T> ieq(PString propertyName, String value) {
+        return this.ieq(propertyName.toString(), value);
+    }
+
+    public <X> ExtJunctionExpression<T> between(PBaseNumber<?, X> propertyName, X value1, X value2) {
+        return this.between(propertyName.toString(), value1, value2);
+    }
+
+    public ExtJunctionExpression<T> between(PString propertyName, String value1, String value2) {
+        return this.between(propertyName.toString(), value1, value2);
+    }
+
+    public <X> ExtJunctionExpression<T> between(PBaseValueEqual<?, X> propertyName, X value1, X value2) {
+        return this.between(propertyName.toString(), value1, value2);
+    }
+
+    public <D> ExtJunctionExpression<T> between(PBaseDate<?, D> propertyName, D value1, D value2) {
+        return this.between(propertyName.toString(), value1, value2);
+    }
+
+    public <X> ExtJunctionExpression<T> betweenProperties(PBaseNumber<?, X> lowProperty, PBaseNumber<?, X> highProperty, X value) {
+        return this.betweenProperties(lowProperty.toString(), highProperty.toString(), value);
+    }
+
+    public <X> ExtJunctionExpression<T> betweenProperties(PBaseValueEqual<?, X> lowProperty, PBaseValueEqual<?, X> highProperty, X value) {
+        return this.betweenProperties(lowProperty.toString(), highProperty.toString(), value);
+    }
+
+    public <D> ExtJunctionExpression<T> betweenProperties(PBaseDate<?, D> lowProperty, PBaseDate<?, D> highProperty, D value) {
+        return this.betweenProperties(lowProperty.toString(), highProperty.toString(), value);
+    }
+
+    public ExtJunctionExpression<T> betweenProperties(PString lowProperty, PString highProperty, String value) {
+        return this.betweenProperties(lowProperty.toString(), highProperty.toString(), value);
+    }
+
+    public <X> ExtJunctionExpression<T> gt(PBaseNumber<?, X> propertyName, X value) {
+        return this.gt(propertyName.toString(), value);
+    }
+
+    public <X> ExtJunctionExpression<T> gt(PBaseValueEqual<?, X> propertyName, X value) {
+        return this.gt(propertyName.toString(), value);
+    }
+
+    public <D> ExtJunctionExpression<T> gt(PBaseDate<?, D> propertyName, D value) {
+        return this.gt(propertyName.toString(), value);
+    }
+
+    public ExtJunctionExpression<T> gt(PString propertyName, String value) {
+        return this.gt(propertyName.toString(), value);
+    }
+
+    public <X> ExtJunctionExpression<T> ge(PBaseNumber<?, X> propertyName, X value) {
+        return this.ge(propertyName.toString(), value);
+    }
+
+    public <X> ExtJunctionExpression<T> ge(PBaseValueEqual<?, X> propertyName, X value) {
+        return this.ge(propertyName.toString(), value);
+    }
+
+    public <D> ExtJunctionExpression<T> ge(PBaseDate<?, D> propertyName, D value) {
+        return this.ge(propertyName.toString(), value);
+    }
+
+    public ExtJunctionExpression<T> ge(PString propertyName, String value) {
+        return this.ge(propertyName.toString(), value);
+    }
+
+    public <X> ExtJunctionExpression<T> lt(PBaseNumber<?, X> propertyName, X value) {
+        return this.lt(propertyName.toString(), value);
+    }
+
+    public <X> ExtJunctionExpression<T> lt(PBaseValueEqual<?, X> propertyName, X value) {
+        return this.lt(propertyName.toString(), value);
+    }
+
+    public <D> ExtJunctionExpression<T> lt(PBaseDate<?, D> propertyName, D value) {
+        return this.lt(propertyName.toString(), value);
+    }
+
+    public ExtJunctionExpression<T> lt(PString propertyName, String value) {
+        return this.lt(propertyName.toString(), value);
+    }
+
+    public <X> ExtJunctionExpression<T> le(PBaseNumber<?, X> propertyName, X value) {
+        return this.le(propertyName.toString(), value);
+    }
+
+    public <X> ExtJunctionExpression<T> le(PBaseValueEqual<?, X> propertyName, X value) {
+        return this.le(propertyName.toString(), value);
+    }
+
+    public <D> ExtJunctionExpression<T> le(PBaseDate<?, D> propertyName, D value) {
+        return this.le(propertyName.toString(), value);
+    }
+
+    public ExtJunctionExpression<T> le(PString propertyName, String value) {
+        return this.le(propertyName.toString(), value);
+    }
+
+    public ExtJunctionExpression<T> isNull(TQProperty propertyName) {
+        return this.isNull(propertyName.toString());
+    }
+
+    public ExtJunctionExpression<T> isNotNull(TQProperty propertyName) {
+        return this.isNotNull(propertyName.toString());
+    }
+
+
+    public ExtJunctionExpression<T> like(PString propertyName, String value) {
+        return this.like(propertyName.toString(), value);
+    }
+
+    public ExtJunctionExpression<T> ilike(PString propertyName, String value) {
+        return this.ilike(propertyName.toString(), value);
+    }
+
+    public ExtJunctionExpression<T> startsWith(PString propertyName, String value) {
+        return this.startsWith(propertyName.toString(), value);
+    }
+
+    public ExtJunctionExpression<T> istartsWith(PString propertyName, String value) {
+        return this.istartsWith(propertyName.toString(), value);
+    }
+
+    public ExtJunctionExpression<T> endsWith(PString propertyName, String value) {
+        return this.endsWith(propertyName.toString(), value);
+    }
+
+    public ExtJunctionExpression<T> iendsWith(PString propertyName, String value) {
+        return this.iendsWith(propertyName.toString(), value);
+    }
+
+    public ExtJunctionExpression<T> contains(PString propertyName, String value) {
+        return this.contains(propertyName.toString(), value);
+    }
+
+    public ExtJunctionExpression<T> icontains(PString propertyName, String value) {
+        return this.icontains(propertyName.toString(), value);
+    }
+
+    public ExtJunctionExpression<T> in(TQProperty propertyName, Query<?> subQuery) {
+        return this.in(propertyName.toString(), subQuery);
+    }
+
+    public ExtJunctionExpression<T> in(TQProperty propertyName, Object... values) {
+        return this.in(propertyName.toString(), values);
+    }
+
+    public ExtJunctionExpression<T> in(TQProperty propertyName, Collection<?> values) {
+        return this.in(propertyName.toString(), values);
+    }
+
+    public ExtJunctionExpression<T> notIn(TQProperty propertyName, Object... values) {
+        return this.notIn(propertyName.toString(), values);
+    }
+
+    public ExtJunctionExpression<T> notIn(TQProperty propertyName, Collection<?> values) {
+        return this.notIn(propertyName.toString(), values);
+    }
+
+    public ExtJunctionExpression<T> notIn(TQProperty propertyName, Query<?> subQuery) {
+        return this.notIn(propertyName.toString(), subQuery);
+    }
+
+    public ExtJunctionExpression<T> isEmpty(TQProperty propertyName) {
+        return this.isEmpty(propertyName.toString());
+    }
+
+    public ExtJunctionExpression<T> isNotEmpty(TQProperty propertyName) {
+        return this.isEmpty(propertyName.toString());
+    }
+
+    public ExtJunctionExpression<T> arrayContains(TQProperty propertyName, Object... values) {
+        return this.arrayContains(propertyName.toString(), values);
+    }
+
+    public ExtJunctionExpression<T> arrayNotContains(TQProperty propertyName, Object... values) {
+        return this.arrayNotContains(propertyName.toString(), values);
+    }
+
+    public ExtJunctionExpression<T> arrayIsEmpty(TQProperty propertyName) {
+        return this.arrayIsEmpty(propertyName.toString());
+    }
+
+    public ExtJunctionExpression<T> arrayIsNotEmpty(TQProperty propertyName) {
+        return this.arrayIsNotEmpty(propertyName.toString());
+    }
+
+    public ExtJunctionExpression<T> match(PString propertyName, String search) {
+        return this.match(propertyName.toString(), search);
+    }
+
+    public ExtJunctionExpression<T> match(PString propertyName, String search, Match options) {
+        return this.match(propertyName.toString(), search, options);
+    }
+
+    public ExtJunctionExpression<T> multiMatch(String search, PString... properties) {
+        String[] propertiesStr = new String[properties.length];
+        int i = 0;
+        for (TQProperty property : properties) {
+            propertiesStr[i++] = property.toString();
+        }
+        return this.multiMatch(search, propertiesStr);
+    }
+
+    public <X> ExtJunctionExpression<T> ignEq(PBaseNumber<?, X> propertyName, X value) {
+        return this.ignEq(propertyName.toString(), value);
+    }
+
+    public ExtJunctionExpression<T> ignEq(PString propertyName, String value) {
+        return this.ignEq(propertyName.toString(), value);
+    }
+
+    public <X> ExtJunctionExpression<T> ignEq(PBaseValueEqual<?, X> propertyName, X value) {
+        return this.ignEq(propertyName.toString(), value);
+    }
+
+    public ExtJunctionExpression<T> ignEq(PBoolean propertyName, Boolean value) {
+        return this.ignEq(propertyName.toString(), value);
+    }
+
+    public <D> ExtJunctionExpression<T> ignEq(PBaseDate<?, D> propertyName, D value) {
+        return this.ignEq(propertyName.toString(), value);
+    }
+
+    public ExtJunctionExpression<T> ignIeq(PString propertyName, String value) {
+        return this.ignIeq(propertyName.toString(), value);
+    }
+
+    public <X> ExtJunctionExpression<T> ignNe(PBaseNumber<?, X> propertyName, X value) {
+        return this.ignNe(propertyName.toString(), value);
+    }
+
+    public ExtJunctionExpression<T> ignNe(PString propertyName, String value) {
+        return this.ignNe(propertyName.toString(), value);
+    }
+
+    public <X> ExtJunctionExpression<T> ignNe(PBaseValueEqual<?, X> propertyName, X value) {
+        return this.ignNe(propertyName.toString(), value);
+    }
+
+    public ExtJunctionExpression<T> ignNe(PBoolean propertyName, Boolean value) {
+        return this.ignNe(propertyName.toString(), value);
+    }
+
+    public <D> ExtJunctionExpression<T> ignNe(PBaseDate<?, D> propertyName, D value) {
+        return this.ignNe(propertyName.toString(), value);
+    }
+
+    public ExtJunctionExpression<T> ignContains(PString propertyName, String value) {
+        return this.ignContains(propertyName.toString(), value);
+    }
+
+    public ExtJunctionExpression<T> ignEndsWith(PString propertyName, String value) {
+        return this.ignEndsWith(propertyName.toString(), value);
+    }
+
+    public <X> ExtJunctionExpression<T> ignGe(PBaseNumber<?, X> propertyName, X value) {
+        return this.ignGe(propertyName.toString(), value);
+    }
+
+    public <X> ExtJunctionExpression<T> ignGe(PBaseValueEqual<?, X> propertyName, X value) {
+        return this.ignGe(propertyName.toString(), value);
+    }
+
+    public <D> ExtJunctionExpression<T> ignGe(PBaseDate<?, D> propertyName, D value) {
+        return this.ignGe(propertyName.toString(), value);
+    }
+
+    public ExtJunctionExpression<T> ignGe(PString propertyName, String value) {
+        return this.ignGe(propertyName.toString(), value);
+    }
+
+    public <X> ExtJunctionExpression<T> ignGt(PBaseNumber<?, X> propertyName, X value) {
+        return this.ignGt(propertyName.toString(), value);
+    }
+
+    public <X> ExtJunctionExpression<T> ignGt(PBaseValueEqual<?, X> propertyName, X value) {
+        return this.ignGt(propertyName.toString(), value);
+    }
+
+    public <D> ExtJunctionExpression<T> ignGt(PBaseDate<?, D> propertyName, D value) {
+        return this.ignGt(propertyName.toString(), value);
+    }
+
+    public ExtJunctionExpression<T> ignGt(PString propertyName, String value) {
+        return this.ignGt(propertyName.toString(), value);
+    }
+
+    public ExtJunctionExpression<T> ignIcontains(PString propertyName, String value) {
+        return this.ignIcontains(propertyName.toString(), value);
+    }
+
+    public ExtJunctionExpression<T> ignIendsWith(PString propertyName, String value) {
+        return this.ignIendsWith(propertyName.toString(), value);
+    }
+
+    public ExtJunctionExpression<T> ignIlike(PString propertyName, String value) {
+        return this.ignIlike(propertyName.toString(), value);
+    }
+
+    public ExtJunctionExpression<T> ignIstartsWith(PString propertyName, String value) {
+        return this.ignIstartsWith(propertyName.toString(), value);
+    }
+
+    public <X> ExtJunctionExpression<T> ignLe(PBaseNumber<?, X> propertyName, X value) {
+        return this.ignLe(propertyName.toString(), value);
+    }
+
+    public <X> ExtJunctionExpression<T> ignLe(PBaseValueEqual<?, X> propertyName, X value) {
+        return this.ignLe(propertyName.toString(), value);
+    }
+
+    public <D> ExtJunctionExpression<T> ignLe(PBaseDate<?, D> propertyName, D value) {
+        return this.ignLe(propertyName.toString(), value);
+    }
+
+    public ExtJunctionExpression<T> ignLe(PString propertyName, String value) {
+        return this.ignLe(propertyName.toString(), value);
+    }
+
+    public ExtJunctionExpression<T> ignLike(PString propertyName, String value) {
+        return this.ignLike(propertyName.toString(), value);
+    }
+
+    public <X> ExtJunctionExpression<T> ignLt(PBaseNumber<?, X> propertyName, X value) {
+        return this.ignLt(propertyName.toString(), value);
+    }
+
+    public <X> ExtJunctionExpression<T> ignLt(PBaseValueEqual<?, X> propertyName, X value) {
+        return this.ignLt(propertyName.toString(), value);
+    }
+
+    public <D> ExtJunctionExpression<T> ignLt(PBaseDate<?, D> propertyName, D value) {
+        return this.ignLt(propertyName.toString(), value);
+    }
+
+    public ExtJunctionExpression<T> ignLt(PString propertyName, String value) {
+        return this.ignLt(propertyName.toString(), value);
+    }
+
+    public ExtJunctionExpression<T> ignStartsWith(PString propertyName, String value) {
+        return this.ignStartsWith(propertyName.toString(), value);
     }
 }
