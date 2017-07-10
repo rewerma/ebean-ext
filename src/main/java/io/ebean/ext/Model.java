@@ -3,6 +3,7 @@ package io.ebean.ext;
 import io.ebean.Ebean;
 import io.ebean.EbeanServer;
 import io.ebean.bean.EntityBean;
+import io.ebean.ext.support.NonNull;
 import io.ebean.typequery.TQProperty;
 import org.apache.commons.beanutils.PropertyUtils;
 
@@ -71,16 +72,24 @@ public abstract class Model extends io.ebean.Model {
     public void update(String... properties) {
         try {
             EbeanServer ebeanServer;
-            if (_server() == null) {
+            String server = _server();
+            if (server == null) {
                 ebeanServer = Ebean.getDefaultServer();
             } else {
-                ebeanServer = Ebean.getServer(_server());
+                ebeanServer = Ebean.getServer(server);
             }
             Object id = ebeanServer.getBeanId(this);
             Object model = ebeanServer.createQuery(this.getClass()).where().idEq(id).findUnique();
             for (String property : properties) {
-                Object val = PropertyUtils.getProperty(this, property);
-                PropertyUtils.setProperty(model, property, val);
+                if (property.startsWith("nn:")) {
+                    Object val = PropertyUtils.getProperty(this, property.substring(3));
+                    if (val != null) {
+                        PropertyUtils.setProperty(model, property, val);
+                    }
+                } else {
+                    Object val = PropertyUtils.getProperty(this, property);
+                    PropertyUtils.setProperty(model, property, val);
+                }
             }
             ebeanServer.update(model);
         } catch (Exception e) {
@@ -90,10 +99,11 @@ public abstract class Model extends io.ebean.Model {
 
     public void saveOrUpdate() {
         EbeanServer ebeanServer;
-        if (_server() == null) {
+        String server = _server();
+        if (server == null) {
             ebeanServer = Ebean.getDefaultServer();
         } else {
-            ebeanServer = Ebean.getServer(_server());
+            ebeanServer = Ebean.getServer(server);
         }
         Object id = ebeanServer.getBeanId(this);
         if (id == null) {
@@ -105,10 +115,11 @@ public abstract class Model extends io.ebean.Model {
 
     public void saveOrUpdate(String... properties) {
         EbeanServer ebeanServer;
-        if (_server() == null) {
+        String server = _server();
+        if (server == null) {
             ebeanServer = Ebean.getDefaultServer();
         } else {
-            ebeanServer = Ebean.getServer(_server());
+            ebeanServer = Ebean.getServer(server);
         }
         Object id = ebeanServer.getBeanId(this);
         if (id == null) {
@@ -119,20 +130,24 @@ public abstract class Model extends io.ebean.Model {
     }
 
     public void update(TQProperty... properties) {
-        String[] proertiesStr = new String[properties.length];
-        int i = 0;
-        for (TQProperty property : properties) {
-            proertiesStr[i++] = property.toString();
-        }
-        update(proertiesStr);
+        update(makeStrProperties(properties));
     }
 
     public void saveOrUpdate(TQProperty... properties) {
+        saveOrUpdate(makeStrProperties(properties));
+    }
+
+    private static String[] makeStrProperties(TQProperty[] properties) {
         String[] proertiesStr = new String[properties.length];
         int i = 0;
         for (TQProperty property : properties) {
-            proertiesStr[i++] = property.toString();
+            if (property instanceof NonNull) {
+                NonNull nn = (NonNull) property;
+                proertiesStr[i++] = "nn:" + nn.getProperty().toString();
+            } else {
+                proertiesStr[i++] = property.toString();
+            }
         }
-        saveOrUpdate(proertiesStr);
+        return proertiesStr;
     }
 }
