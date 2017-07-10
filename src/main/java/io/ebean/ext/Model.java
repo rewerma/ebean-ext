@@ -12,11 +12,7 @@ import javax.persistence.MappedSuperclass;
 public abstract class Model extends io.ebean.Model {
     protected String _server() {
         EbeanService ebeanService = this.getClass().getAnnotation(EbeanService.class);
-        if (ebeanService == null) {
-            return null;
-        } else {
-            return ebeanService.value();
-        }
+        return ebeanService == null ? null : ebeanService.value();
     }
 
     public void init() {

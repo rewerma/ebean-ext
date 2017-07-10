@@ -2,7 +2,7 @@ package io.ebeaninternal.server.expression;
 
 import io.ebean.*;
 import io.ebean.event.BeanQueryRequest;
-import io.ebean.ext.ExtExpressionList;
+import io.ebean.ext.expression.ExtExpressionList;
 import io.ebean.ext.ExtOrderBy;
 import io.ebean.search.*;
 import io.ebeaninternal.api.*;

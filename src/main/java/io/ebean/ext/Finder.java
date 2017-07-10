@@ -1,13 +1,20 @@
 package io.ebean.ext;
 
 
+import io.ebean.ext.querydefn.ExtOrmQuery;
+
 public class Finder<I, T> extends io.ebean.Finder<I, T> {
     public Finder(Class<T> type) {
-        super(type);
+        super(type, _server(type));
     }
 
     public Finder(Class<T> type, String serverName) {
         super(type, serverName);
+    }
+
+    private static <T> String _server(Class<T> type) {
+        EbeanService ebeanService = type.getAnnotation(EbeanService.class);
+        return ebeanService == null ? null : ebeanService.value();
     }
 
     @Override
@@ -23,9 +30,5 @@ public class Finder<I, T> extends io.ebean.Finder<I, T> {
     @Override
     public ExtOrmQuery<T> query(String ormQuery) {
         return new ExtOrmQuery<T>(super.query(ormQuery));
-    }
-
-    public static void main(String[] args) {
-        new Finder<Long, Object>(Object.class).query().where().and().ignEq("pro", 1).endAnd();
     }
 }

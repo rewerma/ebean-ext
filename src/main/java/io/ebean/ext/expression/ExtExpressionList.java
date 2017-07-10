@@ -1,7 +1,9 @@
-package io.ebean.ext;
+package io.ebean.ext.expression;
 
 import io.ebean.*;
 import io.ebean.event.BeanQueryRequest;
+import io.ebean.ext.ExtOrderBy;
+import io.ebean.ext.querydefn.ExtOrmQuery;
 import io.ebean.search.*;
 import io.ebeaninternal.api.*;
 import io.ebeaninternal.server.deploy.BeanDescriptor;

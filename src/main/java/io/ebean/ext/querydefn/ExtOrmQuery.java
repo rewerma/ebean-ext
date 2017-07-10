@@ -1,4 +1,4 @@
-package io.ebean.ext;
+package io.ebean.ext.querydefn;
 
 
 import io.ebean.*;
@@ -7,6 +7,7 @@ import io.ebean.bean.ObjectGraphNode;
 import io.ebean.bean.PersistenceContext;
 import io.ebean.event.BeanQueryRequest;
 import io.ebean.event.readaudit.ReadEvent;
+import io.ebean.ext.expression.ExtExpressionList;
 import io.ebean.plugin.BeanType;
 import io.ebeaninternal.api.*;
 import io.ebeaninternal.server.autotune.ProfilingListener;

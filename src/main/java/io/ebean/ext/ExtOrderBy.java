@@ -2,6 +2,7 @@ package io.ebean.ext;
 
 
 import io.ebean.OrderBy;
+import io.ebean.ext.querydefn.ExtOrmQuery;
 
 import java.io.Serializable;
 
