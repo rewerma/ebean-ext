@@ -48,10 +48,16 @@ Extend for ebean orm
         }
     }
     
-(4).通过id指定字段更新一条记录
+(4).通过id更新一条记录的指定字段
 
     user.update("userName", "email");
     user.update(_user.userName, _user.email);
     
 其中user的id属性必须有值
 
+
+
+Ebean ORM版本为10.x 
+
+Ebean ORM的样例可以参考其官方Github: 
+https://github.com/ebean-orm-examples
