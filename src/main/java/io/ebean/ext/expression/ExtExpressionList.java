@@ -153,15 +153,6 @@ public class ExtExpressionList<T> implements SpiExpressionList<T> {
     }
 
     @Nullable
-    public T findOne() {
-        return this.query.findOne();
-    }
-
-    public Optional<T> findOneOrEmpty() {
-        return this.query.findOneOrEmpty();
-    }
-
-    @Nullable
     @Override
     public T findUnique() {
         return this.query.findUnique();
