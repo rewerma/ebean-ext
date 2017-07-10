@@ -36,6 +36,11 @@ Extend for Ebean ORM
     User.find.query().extOrder().desc(_user.id).findList();
     User.find.query().where().eq(_user.id, 1L).extOrder().desc(_user.userName).findList();
     
+(7).查询首行记录
+
+    User user = User.find.query().order().desc("id").findFirst();
+    
+如果记录是个集合列表则返回首条记录，如果集合为空则返回空
 
 2.Model操作扩展
 

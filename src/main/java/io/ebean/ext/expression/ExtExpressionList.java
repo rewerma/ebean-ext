@@ -1293,4 +1293,12 @@ public class ExtExpressionList<T> implements SpiExpressionList<T> {
     public ExtExpressionList<T> ignStartsWith(PString propertyName, String value) {
         return this.ignStartsWith(propertyName.toString(), value);
     }
+
+    public T findFirst() {
+        List<T> list = this.findList();
+        if (list != null && !list.isEmpty()) {
+            return list.get(0);
+        }
+        return null;
+    }
 }

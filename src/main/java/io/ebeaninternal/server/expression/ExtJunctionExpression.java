@@ -1266,4 +1266,12 @@ public class ExtJunctionExpression<T> implements SpiJunction<T>, SpiExpression, 
     public ExtJunctionExpression<T> ignStartsWith(PString propertyName, String value) {
         return this.ignStartsWith(propertyName.toString(), value);
     }
+
+    public T findFirst() {
+        List<T> list = this.findList();
+        if (list != null && !list.isEmpty()) {
+            return list.get(0);
+        }
+        return null;
+    }
 }

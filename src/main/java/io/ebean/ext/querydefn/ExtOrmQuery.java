@@ -28,7 +28,6 @@ import java.lang.reflect.Field;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.Set;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
@@ -1129,5 +1128,13 @@ public class ExtOrmQuery<T> implements SpiQuery<T> {
         }
         defaultOrmQuery.fetch(assocProperty.toString(), sb.toString(), fetchConfig);
         return this;
+    }
+
+    public T findFirst() {
+        List<T> list = this.findList();
+        if (list != null && !list.isEmpty()) {
+            return list.get(0);
+        }
+        return null;
     }
 }
