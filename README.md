@@ -9,7 +9,7 @@ Extend for ebean orm
     io.ebean.ext.Finder<Long, Product> finder = new io.ebean.ext.Finder<>(Product.class);
     finder.query().where().ignEq("name", product.getName()).findList();
     
-如果prduct.getName()为空，则直接忽略eq拼接条件。
+如果product.getName()为空，则直接忽略eq拼接条件。
 
 (2).使用别名参数查询
 
