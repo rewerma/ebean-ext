@@ -2,6 +2,7 @@ package io.ebeaninternal.server.expression;
 
 import io.ebean.*;
 import io.ebean.event.BeanQueryRequest;
+import io.ebean.ext.ExtExpressionList;
 import io.ebean.ext.ExtOrderBy;
 import io.ebean.search.*;
 import io.ebeaninternal.api.*;
@@ -685,27 +686,23 @@ public class ExtJunctionExpression<T> implements SpiJunction<T>, SpiExpression, 
     }
 
     @Override
-    public ExtJunctionExpression<T> endJunction() {
-        junctionExpression.endJunction();
-        return this;
+    public ExtExpressionList<T> endJunction() {
+        return new ExtExpressionList<T>(this.query(),junctionExpression.endJunction());
     }
 
     @Override
-    public ExtJunctionExpression<T> endAnd() {
-        junctionExpression.endAnd();
-        return this;
+    public ExtExpressionList<T> endAnd() {
+        return new ExtExpressionList<T>(this.query(),junctionExpression.endAnd());
     }
 
     @Override
-    public ExtJunctionExpression<T> endOr() {
-        junctionExpression.endOr();
-        return this;
+    public ExtExpressionList<T> endOr() {
+        return new ExtExpressionList<T>(this.query(),junctionExpression.endOr());
     }
 
     @Override
-    public ExtJunctionExpression<T> endNot() {
-        junctionExpression.endNot();
-        return this;
+    public ExtExpressionList<T> endNot() {
+        return new ExtExpressionList<T>(this.query(),junctionExpression.endNot());
     }
 
     @Override

@@ -20,8 +20,12 @@ public class ExtExpressionList<T> implements SpiExpressionList<T> {
     private DefaultExpressionList<T> defaultExpressionList;
     private ExtOrmQuery<T> query;
 
-    public ExtExpressionList(ExtOrmQuery<T> query, ExpressionList<T> defaultExpressionList) {
-        this.query = query;
+    public ExtExpressionList(Query<T> query, ExpressionList<T> defaultExpressionList) {
+        if (query instanceof ExtOrmQuery) {
+            this.query = (ExtOrmQuery<T>) query;
+        } else {
+            this.query = new ExtOrmQuery<T>(query);
+        }
         this.defaultExpressionList = (DefaultExpressionList<T>) defaultExpressionList;
     }
 
@@ -682,26 +686,22 @@ public class ExtExpressionList<T> implements SpiExpressionList<T> {
 
     @Override
     public ExtExpressionList<T> endJunction() {
-        defaultExpressionList = (DefaultExpressionList<T>) defaultExpressionList.endJunction();
-        return this;
+        return new ExtExpressionList<T>(this.query, defaultExpressionList.endJunction());
     }
 
     @Override
     public ExtExpressionList<T> endAnd() {
-        defaultExpressionList = (DefaultExpressionList<T>) defaultExpressionList.endAnd();
-        return this;
+        return new ExtExpressionList<T>(this.query, defaultExpressionList.endAnd());
     }
 
     @Override
     public ExtExpressionList<T> endOr() {
-        defaultExpressionList = (DefaultExpressionList<T>) defaultExpressionList.endOr();
-        return this;
+        return new ExtExpressionList<T>(this.query, defaultExpressionList.endOr());
     }
 
     @Override
     public ExtExpressionList<T> endNot() {
-        defaultExpressionList = (DefaultExpressionList<T>) defaultExpressionList.endNot();
-        return this;
+        return new ExtExpressionList<T>(this.query, defaultExpressionList.endNot());
     }
 
     @Override
