@@ -55,6 +55,13 @@ Extend for Ebean ORM
     
 其中user的id属性必须有值
 
+(5).加入saveOrUpdate方法
+
+    user.saveOrUpdate();
+    user.saveOrUpdate(_user.userName, _user.email);
+  
+如果是新增的情况依然支持init()初始化方法自动调用，如果是update的情况依然支持指定更新字段入参
+
 
 
 Ebean ORM版本为10.x 
