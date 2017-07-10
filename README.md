@@ -47,6 +47,7 @@ Extend for Ebean ORM
 (1).实体类继承抽象类：io.ebean.ext.Model
 
 (2).实体类可引入注解：@EbeanService("ebeanServer2")
+
 该注解可以用在多数据源的多ebeanServer的状态下，加了该注解之后，所有扩展的增删改查操作都不需要再次申明ebeanServer的beanId。
 
 (3).model.save的初始化方法自动调用
@@ -72,8 +73,6 @@ Extend for Ebean ORM
     user.saveOrUpdate(_user.userName, _user.email);
   
 如果是新增的情况依然支持init()初始化方法自动调用，如果是update的情况依然支持指定更新字段入参
-
-
 
 Ebean ORM版本为10.x 
 
