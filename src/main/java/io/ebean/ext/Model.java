@@ -3,7 +3,7 @@ package io.ebean.ext;
 import io.ebean.Ebean;
 import io.ebean.EbeanServer;
 import io.ebean.bean.EntityBean;
-import io.ebean.ext.support.NonNull;
+import io.ebean.ext.support.SkipNull;
 import io.ebean.typequery.TQProperty;
 import org.apache.commons.beanutils.PropertyUtils;
 
@@ -81,7 +81,7 @@ public abstract class Model extends io.ebean.Model {
             Object id = ebeanServer.getBeanId(this);
             Object model = ebeanServer.createQuery(this.getClass()).where().idEq(id).findUnique();
             for (String property : properties) {
-                if (property.startsWith("nn:")) {
+                if (property.startsWith("sn:")) {
                     Object val = PropertyUtils.getProperty(this, property.substring(3));
                     if (val != null) {
                         PropertyUtils.setProperty(model, property, val);
@@ -141,9 +141,9 @@ public abstract class Model extends io.ebean.Model {
         String[] proertiesStr = new String[properties.length];
         int i = 0;
         for (TQProperty property : properties) {
-            if (property instanceof NonNull) {
-                NonNull nn = (NonNull) property;
-                proertiesStr[i++] = "nn:" + nn.getProperty().toString();
+            if (property instanceof SkipNull) {
+                SkipNull nn = (SkipNull) property;
+                proertiesStr[i++] = "sn:" + nn.getProperty().toString();
             } else {
                 proertiesStr[i++] = property.toString();
             }
