@@ -82,7 +82,8 @@ public abstract class Model extends io.ebean.Model {
             Object model = ebeanServer.createQuery(this.getClass()).where().idEq(id).findUnique();
             for (String property : properties) {
                 if (property.startsWith("sn:")) {
-                    Object val = PropertyUtils.getProperty(this, property.substring(3));
+                    property = property.substring(3);
+                    Object val = PropertyUtils.getProperty(this, property);
                     if (val != null) {
                         PropertyUtils.setProperty(model, property, val);
                     }
