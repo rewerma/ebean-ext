@@ -65,7 +65,10 @@ Extention of Ebean ORM
     user.update("userName", "email");
     user.update(_user.userName, _user.email);
     
-其中user的id属性必须有值
+其中user的id属性必须有值。指定为空不更新设置：
+
+    user.update("sn:pwd");
+    user.update(SkipNull.set(_user.pwd));
 
 (5).加入saveOrUpdate方法
 
