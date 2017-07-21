@@ -3,7 +3,7 @@ package io.ebean.ext;
 import io.ebean.Ebean;
 import io.ebean.EbeanServer;
 import io.ebean.bean.EntityBean;
-import io.ebean.ext.support.SkipNull;
+import io.ebean.ext.support.SN;
 import io.ebean.typequery.TQProperty;
 import org.apache.commons.beanutils.PropertyUtils;
 
@@ -142,9 +142,9 @@ public abstract class Model extends io.ebean.Model {
         String[] proertiesStr = new String[properties.length];
         int i = 0;
         for (TQProperty property : properties) {
-            if (property instanceof SkipNull) {
-                SkipNull nn = (SkipNull) property;
-                proertiesStr[i++] = "sn:" + nn.getProperty().toString();
+            if (property instanceof SN) {
+                SN sn = (SN) property;
+                proertiesStr[i++] = "sn:" + sn.getProperty().toString();
             } else {
                 proertiesStr[i++] = property.toString();
             }
