@@ -510,7 +510,6 @@ public class ExtOrmQuery<T> implements SpiQuery<T> {
         return this;
     }
 
-    //FIXME `OrderBy` is a final class, how to operation it
     @Override
     public OrderBy<T> order() {
         return defaultOrmQuery.order();
