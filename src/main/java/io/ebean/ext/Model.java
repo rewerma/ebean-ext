@@ -8,12 +8,27 @@ import io.ebean.typequery.TQProperty;
 import org.apache.commons.beanutils.PropertyUtils;
 
 import javax.persistence.MappedSuperclass;
+import java.util.Objects;
 
 @MappedSuperclass
 public abstract class Model extends io.ebean.Model {
     protected String _server() {
         EbeanService ebeanService = this.getClass().getAnnotation(EbeanService.class);
         return ebeanService == null ? null : ebeanService.value();
+    }
+
+    public static <T> String _server(Class<T> type) {
+        EbeanService ebeanService = type.getAnnotation(EbeanService.class);
+        return ebeanService == null ? null : ebeanService.value();
+    }
+
+    public static <T> EbeanServer _ebeanServer(Class<T> type) {
+        EbeanService ebeanService = type.getAnnotation(EbeanService.class);
+        if (ebeanService == null || ebeanService.value().equals("") || ebeanService.value().equals("ebeanServer")) {
+            return Ebean.getDefaultServer();
+        } else {
+            return Ebean.getServer(ebeanService.value());
+        }
     }
 
     public void init() {
