@@ -832,7 +832,7 @@ public class ExtExpressionList<T> implements SpiExpressionList<T> {
 
     public ExtExpressionList<T> ignGe(String s, Object o) {
         if (o != null) {
-            defaultExpressionList.ne(s, o);
+            defaultExpressionList.ge(s, o);
         }
         return this;
     }
